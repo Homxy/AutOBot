@@ -133,9 +133,11 @@ example
 
 | Parameter | Type      |Description                       | 
 | :-------- | :-------  |:-------------------------------- |
-| `spd`      | `int`  | Moving speed (both)| 
+| `LN`      | `int`  | line track mode (0,stop) (1,start) | 
+| `HM`      | `int`  | human track mode (0,stop) (1,start)| 
+| `spd`      | `int`  | Moving speed (0-100) (both)| 
 | `sen`      | `float`  | Sensitivity (both) |
-| `thr`      | `int`  | Threshold (line tracking)|
+| `thr`      | `int`  | Threshold (0-100) (line tracking)|
 | `type`      | `String`  | type of drive(diff, omni, mac) |
 | `box`      | `int` | human box size (human tracking) |
 | `dzone`      | `int`| deadzone (both) |
