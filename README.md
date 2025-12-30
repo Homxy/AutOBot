@@ -121,6 +121,26 @@ use to receive (speed, dir, ang) from pi and drive robot.
   piComm.handle(); 
 ```
 
+##
+
+#### **Communication Protocal** 
+start with ```:M```|
+```parameter=value```|
+```parameter=value```|....
+
+example 
+```:M|spd=50|sen=0.8|LN=1```  -> Sets speed to 50, sensitivity to 0.8, and starts Line Follow mode.
+
+| Parameter | Type      |Description                       | 
+| :-------- | :-------  |:-------------------------------- |
+| `spd`      | `int`  | Moving speed (both)| 
+| `sen`      | `float`  | Sensitivity (both) |
+| `thr`      | `int`  | Threshold (line tracking)|
+| `type`      | `String`  | type of drive(diff, omni, mac) |
+| `box`      | `int` | human box size (human tracking) |
+| `dzone`      | `int`| deadzone (both) |
+| `col`      | `int`  | line color  (line tracking)|
+| `def`      | `int`  | def=speed,direction,angular (e.g., 50,180,0) (line tracking)|
 
 
 #
