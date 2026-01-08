@@ -3,7 +3,6 @@
 
 Autobot_Library is a modular and efficient Arduino library designed to simplify mobile robot development. It abstracts complex kinematics for various drive types and provides built-in communication handlers for remote control via WiFi (UDP) or AI coprocessors (Raspberry Pi/Jetson)
 
-# Requirements
 
 # Requirements
 
