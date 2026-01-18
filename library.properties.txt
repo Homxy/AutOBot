@@ -1,0 +1,10 @@
+name=AutOBot
+version=1.0.0
+author=Krittatphat  Phanudithuekun, Jakrapong  Wongwiwattana, Poorin Phattrowas
+maintainer=Hommy <hommycm@gmail.com>
+sentence=Library for mobile robot education.
+paragraph= AutOBot is a library for mobile robot education. This one can controls differential drive, 3 wheel omni directional drive and 4 wheel mecanum drive. There are 3 main function. There are basic move, teleop and AI.
+category=Device Control
+url=https://github.com/Homxy/AutOBot
+architectures=*
+license=MIT
