@@ -4,7 +4,7 @@ An ESP32-based robot control library for mobile robots with **differential**, **
 
 ---
 
-## ✨ Features
+## Features
 
 ### AutOBot (Low-level Control)
 
@@ -112,7 +112,7 @@ robot.stop();
 
 ---
 
-## 📡 BLE Teleoperation
+## BLE Teleoperation
 
 ### Start BLE Teleop
 
@@ -138,7 +138,7 @@ Example:
 
 ---
 
-## 🧠 AutOBotAI Usage
+## AutOBotAI Usage
 
 ### Create AI Controller
 
@@ -214,18 +214,8 @@ If no data is received for **> 1 second**, the robot stops automatically.
 
 ---
 
-## 🛡️ Safety Features
 
-* Motor speed clamping
-* Auto-stop on:
-
-  * BLE disconnect
-  * AI communication timeout
-* PWM floor avoids motor stalling
-
----
-
-## 📝 Notes
+## Notes
 
 * Ensure PWM channels are configured for ESP32
 * BLE teleop and AI control can coexist
@@ -233,19 +223,10 @@ If no data is received for **> 1 second**, the robot stops automatically.
 
 ---
 
-## 📄 License
+## License
 
 MIT License – free to use, modify, and distribute.
 
 ---
 
-## 🤖 Roadmap (Optional)
 
-* Encoder support
-* PID velocity control
-* ROS2 bridge
-* BLE joystick profile
-
----
-
-Built for robotics experiments, competitions, and autonomous platforms 🚀
