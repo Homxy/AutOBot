@@ -1,0 +1,45 @@
+#######################################
+# Syntax Coloring Map For AutOBot
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+AutOBot        KEYWORD1
+AutOBotAI      KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin               KEYWORD2
+drive               KEYWORD2
+stop                KEYWORD2
+
+setMotor1Pins       KEYWORD2
+setMotor2Pins       KEYWORD2
+setMotor3Pins       KEYWORD2
+setMotor4Pins       KEYWORD2
+
+goForward           KEYWORD2
+goBackward          KEYWORD2
+slideLeft           KEYWORD2
+slideRight          KEYWORD2
+rotateCW            KEYWORD2
+rotateCCW           KEYWORD2
+slide               KEYWORD2
+
+telop               KEYWORD2
+requestHuman        KEYWORD2
+requestLine         KEYWORD2
+requestStop         KEYWORD2
+handle              KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+DRIVE_DIFFERENTIAL  LITERAL1
+DRIVE_MECANUM       LITERAL1
+DRIVE_OMNI          LITERAL1
