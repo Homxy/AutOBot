@@ -10,7 +10,6 @@ void setup() {
     myBot.setMotor3Pins(16, 17);
     //DRIVE_DIFFERENTIAL, DRIVE_OMNI_3W, DRIVE_MECANUM
     myBot.begin("DRIVE_OMNI_3W", 0);
-    myBot.teleop();
 }
 
 void loop() {

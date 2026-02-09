@@ -2,6 +2,7 @@
 #define AutOBot_h
 
 #include <Arduino.h>
+#include <esp_system.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
