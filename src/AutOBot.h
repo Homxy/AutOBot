@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <esp_system.h>
+#include <esp_mac.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>

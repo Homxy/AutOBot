@@ -179,7 +179,7 @@ void AutOBot::onDisconnect(BLEServer* pServer) {
 }
 
 void AutOBot::onWrite(BLECharacteristic* c) {
-    std::string value = c->getValue();
+    String value = c->getValue();
     if (value.length() > 0) {
         String s = String(value.c_str());
         // Simple JSON-ish parsing for {"x":0.5, "y":-0.2, "w":0.1}
