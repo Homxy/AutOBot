@@ -55,8 +55,12 @@ pip install opencv-python-headless numpy gpiod pyserial ultralytics
 ## Installation
 
 Download  [ArduinoRobot.h](https://github.com/CannabiZz9/Autobot_Library/blob/main/ArduinoRobot.h)
-
 Add to Arduino IDE``` #include "ArduinoRobot.h"```
+
+(With Raspberry Pi)
+Downlaod [RaspberryPi Image.bin](https://mega.nz/file/e34WADqS#fa6yn67Adh00KQ7MNSCv5WMbqWxhMRH3YfOvYcj7gW0)
+Use [BalenaEtcher](https://etcher.balena.io) to install image to sd card
+
     
 ## Demo
 
