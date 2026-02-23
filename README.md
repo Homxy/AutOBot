@@ -60,8 +60,9 @@ Add to Arduino IDE``` #include "ArduinoRobot.h"```
 (With Raspberry Pi)
 Downlaod [RaspberryPi Image.bin](https://mega.nz/file/e34WADqS#fa6yn67Adh00KQ7MNSCv5WMbqWxhMRH3YfOvYcj7gW0)
 Use [BalenaEtcher](https://etcher.balena.io) to install image to sd card
-Raspberry Pi : autobot@autobot-pi
-Password :  (press spacebar one time)
+
+## Raspberry Pi : autobot@autobot-pi
+## Password :  (press spacebar one time)
     
 ## Demo
 
