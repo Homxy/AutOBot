@@ -1,61 +1,88 @@
 #include "AutOBotAI.h"
 
-AutOBotAI::AutOBotAI() {}
-
-void AutOBotAI::begin(AutOBot& robot) {
-    this->robot = &robot;
-    connected = false;
-    lastUpdateTime = millis(); 
+AutOBotAI::AutOBotAI() 
+: _serial(Serial),
+  _robot(*(AutOBot*)nullptr) 
+{
 }
+
+void AutOBotAI::setRX(uint8_t a) { rx = a; }
+void AutOBotAI::setTX(uint8_t b) { tx = b; }
+
+void AutOBotAI::begin(Stream& serial, AutOBot& robot) {
+    _serial = serial;
+    _robot  = robot;
+
+    _connected = false;
+    _lastUpdateTime = millis();
+}
+
 
 void AutOBotAI::requestHuman(int baseSpeed, float turnGain, int boxSize, int deadzone) { 
-    Serial.print(":M|HM=1|spd="); Serial.print(baseSpeed);
-    Serial.print("|sen="); Serial.print(turnGain);
-    Serial.print("|box="); Serial.print(boxSize);
-    Serial.print("|dzone="); Serial.print(deadzone);
-    Serial.println("|LN=0");
+    _serial.print(":M|HM=1|spd=");
+    _serial.print(baseSpeed);
+    _serial.print("|sen=");
+    _serial.print(turnGain);
+    _serial.print("|box=");
+    _serial.print(boxSize);
+    _serial.print("|dzone=");
+    _serial.print(deadzone);
+    _serial.println("|LN=0");
 }
 
-void AutOBotAI::requestLine(int baseSpeed, float turnGain, int thresh, String color, int defS, int defD, int defA) { 
-    Serial.print(":M|LN=1|spd="); Serial.print(baseSpeed);
-    Serial.print("|sen="); Serial.print(turnGain);
-    Serial.print("|thr="); Serial.print(thresh);
-    Serial.print("|col="); Serial.print(color);
-    Serial.print("|def="); Serial.print(defS); Serial.print(","); 
-    Serial.print(defD); Serial.print(","); 
-    Serial.print(defA);
-    Serial.println("|HM=0");
+void AutOBotAI::requestLine(int baseSpeed, float turnGain, int thresh,
+                            String color, int defS, int defD, int defA) { 
+    _serial.print(":M|LN=1|spd=");
+    _serial.print(baseSpeed);
+    _serial.print("|sen=");
+    _serial.print(turnGain);
+    _serial.print("|thr=");
+    _serial.print(thresh);
+    _serial.print("|col=");
+    _serial.print(color);
+    _serial.print("|def=");
+    _serial.print(defS); _serial.print(",");
+    _serial.print(defD); _serial.print(",");
+    _serial.print(defA);
+    _serial.println("|HM=0");
 }
 
 void AutOBotAI::setDriveType(String type) {
-    Serial.print(":M|type="); Serial.println(type);
+    _serial.print(":M|type=");
+    _serial.println(type);
 }
 
 void AutOBotAI::requestStop() { 
-    Serial.println(":M|HM=0|LN=0"); 
+    _serial.println(":M|HM=0|LN=0"); 
 }
 
+// ================= MAIN LOOP =================
+
 void AutOBotAI::handle() {
-    // Parse incoming data: <speed,direction,angular>
-    while (Serial.available() > 0) {
-        char c = Serial.read();
+
+    while (_serial.available() > 0) {
+
+        char c = _serial.read();
+
         if (c == '<') {
-            int s = Serial.parseInt(); 
-            int d = Serial.parseInt(); 
-            int a = Serial.parseInt(); 
+
+            int s = _serial.parseInt(); 
+            int d = _serial.parseInt(); 
+            int a = _serial.parseInt(); 
             
-            // Check for closing tag to ensure packet integrity
-            if (Serial.read() == '>') {
-                robot->drive(s, d, a);
-                lastUpdateTime = millis();
-                connected = true;
+            if (_serial.read() == '>') {
+
+                _robot.drive(s, d, a);
+
+                _lastUpdateTime = millis();
+                _connected = true;
             }
         }
     }
 
-    // Safety Watchdog: Stop robot if Pi disconnects (1 second timeout)
-    if (connected && (millis() - lastUpdateTime > 1000)) {
-        connected = false;
-        robot->stop(); 
+    // ===== Watchdog (1 second timeout) =====
+    if (_connected && (millis() - _lastUpdateTime > 1000)) {
+        _connected = false;
+        _robot.stop(); 
     }
 }
