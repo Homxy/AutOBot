@@ -15,7 +15,7 @@ private:
 public:
     AutOBotAI();
 
-    uint8_t rx = 17, tx = 16;
+    uint8_t rx = 16, tx = 17;
 
     void setRX(uint8_t a);
     void setTX(uint8_t b);

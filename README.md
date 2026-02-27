@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AutOBot & AutOBotAI
 
 An ESP32-based robot control library for mobile robots with **differential**, **3-wheel omni**, and **4-wheel mecanum** drive systems. The library supports **BLE teleoperation** and **AI-assisted control** (human-following / line-following) via serial communication.
@@ -433,5 +432,4 @@ example
 
 #
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
->>>>>>> aa92eb520cf7601f92098fa8d663d211d55150bf
 
