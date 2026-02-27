@@ -9,6 +9,10 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 
+#define DECEL_STEP 10
+#define PWM_FREQ   100
+#define PWM_RES    8
+
 class AutOBot : public BLEServerCallbacks, public BLECharacteristicCallbacks {
     private:
         uint8_t m1a = 12, m1b = 13; 
@@ -16,6 +20,10 @@ class AutOBot : public BLEServerCallbacks, public BLECharacteristicCallbacks {
         uint8_t m3a = 26, m3b = 25;
         uint8_t m4a = 33, m4b = 32;
         
+        float currX = 0;
+        float currY = 0;
+        float currW = 0;
+
         int deviation;
         String driveType;
 
