@@ -291,7 +291,7 @@ Download  [ArduinoRobot.h](https://github.com/CannabiZz9/Autobot_Library/blob/ma
 Add to Arduino IDE``` #include "ArduinoRobot.h"```
 
 (With Raspberry Pi)
-Downlaod [RaspberryPi Image.bin](https://archive.org/details/autobot_202602)
+Downlaod [RaspberryPi Image.bin](https://archive.org/embed/autobot_202602)
 Use [BalenaEtcher](https://etcher.balena.io) to install image to sd card
 
 ## Raspberry Pi : autobot@autobot-pi
