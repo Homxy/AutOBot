@@ -21,10 +21,6 @@ class AutOBot : public BLEServerCallbacks, public BLECharacteristicCallbacks {
         uint8_t m2a = 22, m2b = 23; 
         uint8_t m3a = 25, m3b = 26;
         uint8_t m4a = 27, m4b = 14;
-        
-        float currX = 0;
-        float currY = 0;
-        float currW = 0;
 
         int deviation;
         DriveType driveType;

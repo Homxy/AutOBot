@@ -7,10 +7,10 @@
 class AutOBotAI {
 private:
     
-    Stream& _serial; 
-    AutOBot& _robot;
-    unsigned long _lastUpdateTime;
-    bool _connected;
+    Stream* _serial = nullptr; 
+    AutOBot* _robot = nullptr;
+    unsigned long _lastUpdateTime = 0;
+    bool _connected = false;
 
 public:
     AutOBotAI();
@@ -21,12 +21,26 @@ public:
     void setTX(uint8_t b);
     
     void begin(Stream& serial, AutOBot& robot);
-    void requestHuman(int baseSpeed = 0, float turnGain = 0.5, int boxSize = 30000, int deadzone = 5000);
-    void requestLine(int baseSpeed = 0, float turnGain = 0.5, int thresh = 100, String color = "black", int defS = 0, int defD = 0, int defA = 0);
-    void setDriveType(String type);
+
+    void requestHuman(int baseSpeed = 0,
+                      float turnGain = 0.5,
+                      int boxSize = 30000,
+                      int deadzone = 5000);
+
+    void requestLine(int baseSpeed = 0,
+                     float turnGain = 0.5,
+                     int thresh = 100,
+                     const char* color = "black",
+                     int defS = 0,
+                     int defD = 0,
+                     int defA = 0);
+
+    void setDriveType(const char* type);
+
     void requestStop();
-    
+
     void handle();
+
 };
 
 #endif

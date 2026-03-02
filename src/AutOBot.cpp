@@ -17,12 +17,13 @@ void AutOBot::begin(DriveType IdriveType, int Ideviation) {
         pinMode(m4a, OUTPUT); pinMode(m4b, OUTPUT);
     }
     if (driveType == DRIVE_OMNI_3W) {
-        pinMode(m3a, OUTPUT); pinMode(m3b, OUTPUT);
+        pinMode(m1a, OUTPUT); pinMode(m1b, OUTPUT);
+        pinMode(m2a, OUTPUT); pinMode(m2b, OUTPUT);
+        pinMode(m3a, OUTPUT); pinMode(m3b, OUTPUT);    
     }
 }
 
 void AutOBot::setMotor(uint8_t a, uint8_t b, int speed) {
-    speed = constrain(speed, -100, 100);
     int pwm = map(abs(speed), 0, 100, 60, 255);
     if (speed > 0) {
         analogWrite(a, pwm);
@@ -44,10 +45,10 @@ void AutOBot::drive(float x, float y, float w) {
     float rightFactor = 1.0;
 
     if (deviation < 0) {
-        rightFactor = 1.0 - (abs(deviation) / 200.0);
+        rightFactor = 1.0 - (abs(deviation) / 100.0);
     }
     else if (deviation > 0) {
-        leftFactor = 1.0 - (abs(deviation) / 200.0);
+        leftFactor = 1.0 - (abs(deviation) / 100.0);
     }
 
     if (driveType == DRIVE_DIFFERENTIAL) {
@@ -57,8 +58,14 @@ void AutOBot::drive(float x, float y, float w) {
         setMotor(m4a, m4b, (vy + vx) * rightFactor);
     } 
     else if (driveType == DRIVE_OMNI_3W) {
-        setMotor(m1a, m1b, (vy + vw) * leftFactor);
-        setMotor(m2a, m2b, (-0.5 * vy + 0.866 * vx + vw) * rightFactor);
+        if (vy > 0) {
+            setMotor(m1a, m1b, (vy + vw) * rightFactor);
+        }
+        else {
+            setMotor(m1a, m1b, (vy + vw) * leftFactor);
+        }
+        
+        setMotor(m2a, m2b, (-0.5 * vy + 0.866 * vx + vw) * leftFactor);
         setMotor(m3a, m3b, (-0.5 * vy - 0.866 * vx + vw) * rightFactor);
     } 
     else if (driveType == DRIVE_MECANUM) {
@@ -98,13 +105,13 @@ void AutOBot::slideRight(float speed, int timeMs) {
 }
 
 void AutOBot::rotateCW(float speed, int timeMs) {
-    drive(speed, speed, 0);
+    drive(0, 0, speed);
     delay(timeMs);
     stop();
 }
 
 void AutOBot::rotateCCW(float speed, int timeMs) {
-    drive(-speed, speed, 0);
+    drive(0, 0, -speed);
     delay(timeMs);
     stop();
 }
@@ -183,14 +190,13 @@ void AutOBot::onWrite(BLECharacteristic* c) {
     std::string value = c->getValue();
     if (value.length() > 0) {
         String s = String(value.c_str());
-        // Simple JSON-ish parsing for {"x":0.5, "y":-0.2, "w":0.1}
         Serial.println("Received: " + s);
         int commaIndex = s.indexOf(',');
         if (commaIndex == -1) return;
 
-        float x = s.substring(0, commaIndex).toFloat() * 100;
-        float y = s.substring(commaIndex + 1).toFloat() * 100;
-        float w = s.substring(s.lastIndexOf(',') + 1).toFloat() * 100;
+        float x = s.substring(0, commaIndex).toFloat();
+        float y = s.substring(commaIndex + 1).toFloat();
+        float w = s.substring(s.lastIndexOf(',') + 1).toFloat();
         drive(x, y, w);
     }
 }
