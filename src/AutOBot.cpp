@@ -52,10 +52,10 @@ void AutOBot::drive(float x, float y, float w) {
     }
 
     if (driveType == DRIVE_DIFFERENTIAL) {
-        setMotor(m1a, m1b, (vy - vx) * leftFactor);
-        setMotor(m2a, m2b, (vy + vx) * rightFactor);
-        setMotor(m3a, m3b, (vy - vx) * leftFactor);
-        setMotor(m4a, m4b, (vy + vx) * rightFactor);
+        setMotor(m1a, m1b, (vy - vx + vw) * leftFactor);
+        setMotor(m2a, m2b, (vy + vx + vw) * rightFactor);
+        setMotor(m3a, m3b, (vy - vx + vw) * leftFactor);
+        setMotor(m4a, m4b, (vy + vx + vw) * rightFactor);
     } 
     else if (driveType == DRIVE_OMNI_3W) {
         if (vy > 0) {
@@ -69,10 +69,10 @@ void AutOBot::drive(float x, float y, float w) {
         setMotor(m3a, m3b, (-0.5 * vy - 0.866 * vx + vw) * rightFactor);
     } 
     else if (driveType == DRIVE_MECANUM) {
-        setMotor(m1a, m1b, (vy + vx + vw) * leftFactor);
-        setMotor(m2a, m2b, (vy - vx - vw) * rightFactor);
-        setMotor(m3a, m3b, (vy + vx + vw) * leftFactor);
-        setMotor(m4a, m4b, (vy - vx - vw) * rightFactor);
+        setMotor(m1a, m1b, (vy - vx + vw) * leftFactor);
+        setMotor(m2a, m2b, (vy + vx + vw) * rightFactor);
+        setMotor(m3a, m3b, (vy - vx + vw) * leftFactor);
+        setMotor(m4a, m4b, (vy + vx + vw) * rightFactor);
     }
 }
 
