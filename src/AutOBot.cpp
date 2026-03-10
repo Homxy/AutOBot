@@ -69,10 +69,10 @@ void AutOBot::drive(float x, float y, float w) {
         setMotor(m3a, m3b, (-0.5 * vy - 0.866 * vx + vw) * rightFactor);
     } 
     else if (driveType == DRIVE_MECANUM) {
-        setMotor(m1a, m1b, (vy - vx + vw) * leftFactor);
-        setMotor(m2a, m2b, (vy + vx + vw) * rightFactor);
-        setMotor(m3a, m3b, (vy - vx + vw) * leftFactor);
-        setMotor(m4a, m4b, (vy + vx + vw) * rightFactor);
+        setMotor(m1a, m1b, (vy + vx + vw) * leftFactor);
+        setMotor(m2a, m2b, (vy - vx + vw) * rightFactor);
+        setMotor(m3a, m3b, (vy + vx + vw) * leftFactor);
+        setMotor(m4a, m4b, (vy - vx + vw) * rightFactor);
     }
 }
 
@@ -93,25 +93,25 @@ void AutOBot::goBackward(float speed, int timeMs) {
 }
 
 void AutOBot::slideLeft(float speed, int timeMs) {
-    drive(0, -speed, 0);
-    delay(timeMs);
-    stop();
-}
-
-void AutOBot::slideRight(float speed, int timeMs) {
     drive(0, speed, 0);
     delay(timeMs);
     stop();
 }
 
+void AutOBot::slideRight(float speed, int timeMs) {
+    drive(0, -speed, 0);
+    delay(timeMs);
+    stop();
+}
+
 void AutOBot::rotateCW(float speed, int timeMs) {
-    drive(0, 0, speed);
+    drive(0, 0, -speed);
     delay(timeMs);
     stop();
 }
 
 void AutOBot::rotateCCW(float speed, int timeMs) {
-    drive(0, 0, -speed);
+    drive(0, 0, speed);
     delay(timeMs);
     stop();
 }
@@ -127,7 +127,7 @@ void AutOBot::slide(int degree, float speed, int timeMs) {
 
 
 //teleop
-void AutOBot::telop() {
+void AutOBot::teleop() {
     uint8_t mac[6];
     esp_read_mac(mac, ESP_MAC_BT);
 
@@ -187,7 +187,7 @@ void AutOBot::onDisconnect(BLEServer* pServer) {
 }
 
 void AutOBot::onWrite(BLECharacteristic* c) {
-    std::string value = c->getValue();
+    std::string value = std::string(c->getValue().c_str());
     if (value.length() > 0) {
         String s = String(value.c_str());
         Serial.println("Received: " + s);

@@ -50,7 +50,7 @@ class AutOBot : public BLEServerCallbacks, public BLECharacteristicCallbacks {
         void slide(int degree, float speed, int timeMs);
         
         //teleop
-        void telop();
+        void teleop();
         void onConnect(BLEServer* pServer) override;
         void onDisconnect(BLEServer* pServer) override;
         void onWrite(BLECharacteristic* pCharacteristic) override;
